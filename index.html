@@ -93,23 +93,11 @@
 /* swirling ring around phone */
 .right .swirl{
   position:absolute; z-index:1; pointer-events:none;
-  width:min(88vw,800px); height:min(88vw,800px); left:50%; top:50%;
+  width:min(60vw,550px); height:min(60vw,550px); left:50%; top:50%;
   transform:translate(-44%,-48%);
-  transform-origin:50% 50%;
-  animation: orbit 32s linear infinite;
-}
-.right .swirl::before, .right .swirl::after{
-  content:""; position:absolute; inset:0; border-radius:50%; mix-blend-mode:screen;
-}
-.right .swirl::before{
-  background: conic-gradient(from 0deg,
-    rgba(120,180,255,.28), rgba(255,90,200,.22), rgba(80,255,220,.22), rgba(120,180,255,.28));
-  filter: blur(26px);
-}
-.right .swirl::after{
-  background: radial-gradient(closest-side at 56% 44%, rgba(255,255,255,.14), rgba(255,255,255,0) 70%);
-  filter: blur(20px);
-  animation: orbitSlow 48s linear infinite reverse;
+  border:2px solid rgba(255,255,255,0.4);
+  border-radius:50%;
+  animation: orbit 60s linear infinite;
 }
 
 /* front glow over phone */
@@ -137,6 +125,11 @@
   opacity:.85;
   transform: translate3d(calc(var(--x,50) * 1%), calc(var(--y,50) * 1%), 0) scale(.9);
   animation: sparkleBlink 2.3s ease-in-out infinite alternate, sparkleFloat var(--d,11s) linear infinite;
+}
+
+@keyframes orbit{
+  from{transform:rotate(0)}
+  to{transform:rotate(360deg)}
 }
 </style>
 </head>
