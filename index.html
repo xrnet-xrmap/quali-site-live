@@ -133,6 +133,8 @@
   from{transform:rotate(0)}
   to{transform:rotate(360deg)}
 }
+
+.chain-logo{width:16px;height:16px;display:inline-block;vertical-align:middle}
 </style>
 </head>
 <body>
@@ -150,24 +152,28 @@
 
     <main class="wrap">
       <section class="left">
-        <h1>The app for<br/>token-gated chat</h1>
-        <p class="sub">Only verified token holders join your chats.</p>
-        <div class="stores" id="download">
-          <a class="badge appstore" href="#">App Store</a>
-          <a class="badge googleplay" href="#">Google Play</a>
-        </div>
-        <button class="cta">Connect wallet</button>
-        <div class="chains">
-          <div class="chain">
-            <svg viewBox="0 0 256 417" class="eth" aria-hidden="true">
-              <path fill="currentColor" d="M127.9 0l-1.1 4.2v276.9l1.1 1.1 127.9-75.6L127.9 0zM127.9 0L0 206.6l127.9 75.6V0zM127.9 304.6l-.6.7v110.1l.6 1.7 128-180.3-128 67.8zM127.9 417v-112.4L0 236.8 127.9 417z"/>
-            </svg>
-            <span>Ethereum</span>
-          </div>
-          <div class="chain ae"><span class="ae-symbol">æ</span><span>æternity</span></div>
-          <div class="more">More blockchains coming soon</div>
-        </div>
-      </section>
+  <h1>The app for<br/>token-gated chat</h1>
+  <p class="sub">Only verified token holders join your chats.</p>
+
+  <div class="stores" id="download">
+    <a class="badge appstore" href="#">App Store</a>
+    <a class="badge googleplay" href="#">Google Play</a>
+  </div>
+
+  <button class="cta">Connect wallet</button>
+
+  <div class="chains">
+    <div class="chain">
+      <img src="images/eth.svg" alt="Ethereum" class="chain-logo"/>
+      <span>Ethereum</span>
+    </div>
+    <div class="chain ae">
+      <img src="images/ae.svg" alt="æternity" class="chain-logo"/>
+      <span>æternity</span>
+    </div>
+    <div class="more">More blockchains coming soon</div>
+  </div>
+</section>
 
       <section class="right">
                 <div class="swirl" aria-hidden="true"></div>
