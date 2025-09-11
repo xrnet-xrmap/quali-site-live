@@ -165,6 +165,14 @@ body, p, li, a, button, input, textarea, small, label{
   font-family: var(--font-b);
 }
 /* TYPO SITE FONTS END */
+
+.brand-link{display:inline-flex;align-items:center;gap:8px;text-decoration:none;position:relative;z-index:100}
+
+.brand-wordmark{height:24px;width:auto;display:inline-block;vertical-align:middle;filter:brightness(0) invert(1)}
+
+.footer-wordmark{height:16px !important;width:auto !important;display:inline-block;vertical-align:middle;filter:brightness(0) invert(1)}
+
+@media (min-width: 1024px){.brand-wordmark{height:28px}.footer-wordmark{height:18px !important}}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -173,8 +181,8 @@ body, p, li, a, button, input, textarea, small, label{
 </head>
 <body>
   <div class="hero">
-    <header class="nav">
-      <a href="./" class="brand brand-link"><img src="images/quali-wordmark.svg" alt="quali.chat" class="brand-wordmark"/></a>
+    <header class="nav"><a href="./" class="brand brand-link"><img src="images/quali-wordmark.svg" alt="quali.chat" class="brand-wordmark"/></a>
+      
       <nav class="links" id="menu">
         <a href="#features">Features</a><a href="#how">How it works</a><a href="#usecases">Use cases</a>
         <a href="#safety">Wallet safety</a><a href="#identity">Identity</a><a href="#faq">FAQ</a>
