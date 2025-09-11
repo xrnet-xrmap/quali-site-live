@@ -140,7 +140,19 @@
 .mini-qimg{width:18px;height:18px;display:inline-block;border-radius:4px;vertical-align:middle;filter:brightness(0) invert(1)}
 
 .q-bubble-img{width:18px;height:18px;display:inline-block;border-radius:6px;vertical-align:middle;filter:brightness(0) invert(1)}
+
+/* TYPO SYNE+INTER START */
+:root{
+  --font-h: "Syne", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-b: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+h1,h2,h3{ font-family: var(--font-h); letter-spacing:-0.01em }
+body, p, li, a, button, input, textarea, small, label{ font-family: var(--font-b) }
+/* TYPO SYNE+INTER END */
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600..800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="hero">
