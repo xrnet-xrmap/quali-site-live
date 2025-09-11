@@ -141,18 +141,35 @@
 
 .q-bubble-img{width:18px;height:18px;display:inline-block;border-radius:6px;vertical-align:middle;filter:brightness(0) invert(1)}
 
-/* TYPO SYNE+INTER START */
+
+
+/* TYPO SITE FONTS START */
 :root{
-  --font-h: "Syne", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-b: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-h: "Sora", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-b: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Larger, responsive headings */
+  --h1: clamp(36px, 6vw, 56px);
+  --h2: clamp(22px, 3.8vw, 32px);
+  --h3: clamp(18px, 2.8vw, 24px);
 }
-h1,h2,h3{ font-family: var(--font-h); letter-spacing:-0.01em }
-body, p, li, a, button, input, textarea, small, label{ font-family: var(--font-b) }
-/* TYPO SYNE+INTER END */
+h1,h2,h3{
+  font-family: var(--font-h);
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+}
+h1{ font-size: var(--h1); font-weight: 700; }
+h2{ font-size: var(--h2); font-weight: 600; }
+h3{ font-size: var(--h3); font-weight: 600; }
+body, p, li, a, button, input, textarea, small, label{
+  font-family: var(--font-b);
+}
+/* TYPO SITE FONTS END */
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600..800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="hero">
