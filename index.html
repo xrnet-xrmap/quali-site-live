@@ -42,7 +42,7 @@
   .right{position:relative;display:flex;align-items:center;justify-content:center;padding:30px 0 40px}
   .phone{width:min(420px,90%);aspect-ratio:9/19.5;background:linear-gradient(180deg,#0b0f18 0%,#090c12 100%);border-radius:42px;border:1px solid rgba(255,255,255,.12);box-shadow:0 60px 140px rgba(28,50,140,.55), 0 10px 60px rgba(0,0,0,.6);transform:perspective(1600px) rotateY(-18deg) rotateZ(-6deg);position:relative;overflow:hidden}
   .notch{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:38%;height:18px;background:#000;border-radius:12px;box-shadow:inset 0 -1px rgba(255,255,255,.08)}
-  .screen{position:absolute;inset:38px 16px 16px;background:var(--panel2);border-radius:24px;border:1px solid rgba(255,255,255,.06);padding:16px}
+  .screen{position:absolute;inset:38px 16px 16px;background:var(--panel2);border-radius:24px;border:1px solid rgba(255,255,255,.06);padding:16px;overflow:hidden}
   .screen-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
   .mini-q{width:18px;height:18px;border-radius:4px;background:#fff;color:#000;display:flex;align-items:center;justify-content:center;font-weight:900}
   .app-name{opacity:.9;font-weight:700;letter-spacing:.2px}.dots{opacity:.6}
@@ -235,6 +235,7 @@ body, p, li, a, button, input, textarea, small, label{
             <div class="row disabled"><div class="row-left"><img src="images/sol.svg" alt="Solana"   class="row-logo"/><div class="row-title">Solana</div></div><div class="meta">Coming soon</div></div>
             <div class="row disabled"><div class="row-left"><img src="images/polygon.svg" alt="Polygon" class="row-logo"/><div class="row-title">Polygon</div></div><div class="meta">Coming soon</div></div>
             <div class="footnote">More blockchains coming soon</div>
+            <img src="/images/automatic-access.png" alt="Automatic access badge" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); max-width:80%; width:280px; height:auto; filter:drop-shadow(0 6px 16px rgba(0,0,0,.3));" />
           </div>
         </div>
               <div class="glow-front" aria-hidden="true"></div>
