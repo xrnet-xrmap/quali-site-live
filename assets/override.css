@@ -1,0 +1,27 @@
+/* 1) Remove the big white badge/card that sits on top of the phone */
+img[alt="Automatic access badge"],
+img[src*="automatic-access"] {
+  display: none !important;
+}
+
+/* 2) Visual thickness for the iPhone mockup (applied via data-attribute set by JS) */
+[data-iphone-mockup]{
+  position: relative !important;
+  /* strong, nice depth */
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,.35))
+          drop-shadow(10px 0 0 rgba(255,255,255,.07));
+}
+
+/* right-side “edge” to make the device feel thicker */
+[data-iphone-mockup]::after{
+  content: "";
+  position: absolute;
+  right: -12px;
+  top: 5%;
+  bottom: 5%;
+  width: 18px;
+  border-radius: 0 28px 28px 0;
+  background: linear-gradient(180deg, rgba(255,255,255,.28), rgba(0,0,0,.50));
+  box-shadow: inset -2px 0 4px rgba(255,255,255,.25), inset 2px 0 4px rgba(0,0,0,.40);
+  pointer-events: none;
+}
