@@ -1,375 +1,105 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>quali.chat — token-gated chat</title>
-  <meta name="color-scheme" content="dark light">
-  <link rel="stylesheet" href="/assets/override.css">
-  <style>
-  :root{--bg:#05070C;--text:#fff;--muted:rgba(255,255,255,.75);--line:rgba(255,255,255,.12);--panel:rgba(255,255,255,.04);--panel2:rgba(255,255,255,.02);--shadow:0 40px 120px rgba(0,0,0,.6)}
-  *{box-sizing:border-box}html,body{margin:0;height:100%;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial;background:#000;color:var(--text)}
-  .hero{position:relative;min-height:100svh;overflow:hidden;background:
-    linear-gradient(to bottom, rgba(0,0,0,0) 60%, #000 100%),
-    linear-gradient(to top, rgba(0,0,0,0) 60%, #000 100%),
-    radial-gradient(1200px 700px at 75% 25%, rgba(40,80,255,.20), transparent 60%),
-    radial-gradient(1000px 800px at 30% 95%, rgba(200,40,200,.18), transparent 65%),
-    linear-gradient(180deg,#03050A 0%,#020307 100%)}
-  .hero::before,.hero::after{content:"";position:absolute;inset:-10%;pointer-events:none}
-  .hero::before{background:
-    conic-gradient(from 210deg at 70% 40%, rgba(60,180,255,.20), transparent 40%),
-    conic-gradient(from 150deg at 72% 65%, rgba(255,70,200,.18), transparent 45%),
-    conic-gradient(from 120deg at 62% 85%, rgba(80,255,240,.14), transparent 55%);filter:blur(24px)}
-  .hero::after{background:
-    radial-gradient(500px 320px at 74% 55%, rgba(90,140,255,.28), transparent 70%),
-    radial-gradient(620px 400px at 70% 35%, rgba(255,255,255,.22), transparent 70%);mix-blend-mode:screen;filter:blur(6px)}
-  .nav{position:relative;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:20px clamp(16px,4vw,40px)}
-  .brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.3px;font-size:20px}
-  .brand .qmark{width:28px;height:28px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;background:#fff;color:#000;font-weight:900}
-  .links{display:flex;align-items:center;gap:18px}.links a{color:#fff;text-decoration:none;opacity:.9}
-  .links .ghost{opacity:.65;border:1px solid var(--line);padding:6px 10px;border-radius:10px}.links .cta.small{margin-left:8px}
-  .hamburger{display:none;font-size:22px;background:none;border:none;color:#fff}
-  .wrap{position:relative;z-index:5;display:grid;grid-template-columns:1.1fr 1fr;gap:40px;padding:0 clamp(16px,4vw,40px) 80px;max-width:1280px;margin:0 auto}
-  .left{padding-top:20px}.left h1{font-size:clamp(36px,5.4vw,72px);line-height:1.02;margin:6px 0 0;letter-spacing:-.02em}
-  .sub{margin:16px 0 24px;color:var(--muted);font-size:clamp(16px,2vw,20px)}
-  .stores{display:flex;gap:16px;margin:8px 0 14px}
-  .badge{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border:1px solid var(--line);border-radius:14px;text-decoration:none;color:#fff;background:rgba(0,0,0,.35);backdrop-filter:blur(6px);box-shadow:var(--shadow)}
-  .appstore::before{content:" ";font-family:system-ui,-apple-system,Segoe UI;font-weight:700;margin-right:6px}
-  .googleplay::before{content:"▶";display:inline-block;transform:translateY(-1px) scale(1.1);margin-right:8px}
-  .cta{display:inline-block;margin-top:8px;padding:14px 22px;border-radius:999px;border:1px solid var(--line);background:#fff;color:#000;font-weight:700}.cta:hover{filter:brightness(.95)}
-  .chains{display:flex;align-items:center;gap:22px;margin-top:22px;flex-wrap:wrap}
-  .chain{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--line);border-radius:999px;background:var(--panel2);backdrop-filter:blur(4px)}
-  .more{color:var(--muted)}
-  .right{position:relative;display:flex;align-items:center;justify-content:center;padding:30px 0 40px}
-  .phone{width:min(420px,90%);aspect-ratio:9/19.5;background:linear-gradient(180deg,#0b0f18 0%,#090c12 100%);border-radius:42px;border:1px solid rgba(255,255,255,.12);box-shadow:0 60px 140px rgba(28,50,140,.55), 0 10px 60px rgba(0,0,0,.6);transform:perspective(1600px) rotateY(-18deg) rotateZ(-6deg);position:relative;overflow:hidden}
-  .notch{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:38%;height:18px;background:#000;border-radius:12px;box-shadow:inset 0 -1px rgba(255,255,255,.08)}
-  .screen{position:absolute;inset:38px 16px 16px;background:var(--panel2);border-radius:24px;border:1px solid rgba(255,255,255,.06);padding:16px;overflow:hidden}
-  .screen-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
-  .mini-q{width:18px;height:18px;border-radius:4px;background:#fff;color:#000;display:flex;align-items:center;justify-content:center;font-weight:900}
-  .app-name{opacity:.9;font-weight:700;letter-spacing:.2px}.dots{opacity:.6}
-  .screen-title{text-align:left;font-weight:700;opacity:.85;margin:6px 0 10px}
-  .row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 12px;border-radius:16px;background:var(--panel);border:1px solid rgba(255,255,255,.06);margin-bottom:10px}
-  .row.disabled{opacity:.6}.row-left{display:flex;align-items:center;gap:10px}
-  .q-bubble{width:18px;height:18px;border-radius:6px;background:#2a2f3a;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px}
-  .dot{width:16px;height:16px;border-radius:50%}
-  .dot.eth{background:linear-gradient(180deg,#b9c7ff,#4361ff)}
-  .dot.ae{background:linear-gradient(180deg,#ff3d8e,#ff2d7a)}
-  .dot.sol{background:linear-gradient(180deg,#19fb9b,#9945ff)}
-  .dot.pol{background:linear-gradient(180deg,#9b8cff,#5b44ff)}
-  .pill.join{appearance:none;border:none;padding:8px 14px;border-radius:999px;background:#fff;color:#000;font-weight:700;cursor:pointer}
-  .joined{color:#9ae6b4;font-weight:700}.meta{color:var(--muted)}
-  .footnote{text-align:center;margin-top:10px;color:var(--muted);font-size:12px}
-  .slice{padding:clamp(56px,9vw,96px) 0;background:#000}
-  .slice.dark{background:#07090f}.container{width:min(1200px,92%);margin:0 auto}
-  h2{font-size:clamp(26px,3.5vw,40px);margin:0 0 22px;letter-spacing:-.01em}
-  .grid{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-  .grid.features li,.grid.cards li{padding:18px;border-radius:18px;background:var(--panel2);border:1px solid var(--line)}
-  .grid.cards li{min-height:90px;display:flex;align-items:center}
-  .steps{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-  .steps li{display:flex;gap:14px;padding:18px;border-radius:18px;background:var(--panel2);border:1px solid var(--line)}
-  .num{width:36px;height:36px;border-radius:50%;background:#fff;color:#000;font-weight:800;display:flex;align-items:center;justify-content:center}
-  .bullets{list-style:disc;padding-left:1.2rem;color:var(--muted)} .bullets li{margin:8px 0}
-  .faq details{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--panel2);margin-bottom:10px}
-  .faq summary{cursor:pointer;font-weight:600} .faq p{color:var(--muted);margin:10px 0 0}
-  .footer{background:#05070C;padding:24px 0;border-top:1px solid var(--line)}
-  .foot{display:flex;alignitems:center;justify-content:space-between;width:min(1200px,92%);margin:0 auto}
-  .legal{display:flex;gap:16px}.legal a{color:var(--muted);text-decoration:none}
-  @media (prefers-reduced-motion:reduce){.phone{transform:perspective(1600px) rotateY(-12deg) rotateZ(-4deg)}}
-  @media (max-width:1080px){.links{display:none}.hamburger{display:block}}
-  @media (max-width:980px){.wrap{grid-template-columns:1fr}.right{order:-1}.left{text-align:center}.chains,.stores{justify-content:center}.grid,.steps{grid-template-columns:1fr}}
-  
-/* back glow behind phone */
-.right .glow{
-  position:absolute; z-index:0; pointer-events:none;
-  width:min(86vw,780px); height:min(86vw,780px); border-radius:50%;
-  left:50%; top:50%; transform:translate(-44%,-48%) rotate(-6deg);
-  background:
-    radial-gradient(closest-side at 40% 40%, rgba(120,180,255,.55), rgba(120,180,255,0) 65%),
-    radial-gradient(closest-side at 65% 55%, rgba(255,90,200,.50), rgba(255,90,200,0) 70%),
-    radial-gradient(closest-side at 50% 60%, rgba(80,255,220,.45), rgba(80,255,220,0) 65%);
-  filter: blur(48px);
-  opacity:.9;
-  animation: glowShift 12s ease-in-out infinite alternate, hueCycle 28s linear infinite;
-}
-
-/* swirling ring around phone */
-.right .swirl{
-  position:absolute; z-index:1; pointer-events:none;
-  width:min(60vw,550px); height:min(60vw,550px); left:50%; top:50%;
-  transform:translate(-44%,-48%);
-  border:2px solid rgba(255,255,255,0.4);
-  border-radius:50%;
-  animation: orbit 60s linear infinite;
-}
-
-/* front glow over phone */
-.right .glow-front{
-  position:absolute; z-index:2; pointer-events:none;
-  width:min(76vw,700px); height:min(76vw,700px); border-radius:50%;
-  left:50%; top:50%; transform:translate(-44%,-48%) rotate(-6deg);
-  background:
-    radial-gradient(closest-side at 55% 45%, rgba(255,255,255,.18), rgba(255,255,255,0) 70%),
-    radial-gradient(closest-side at 45% 55%, rgba(90,140,255,.36), rgba(90,140,255,0) 68%),
-    radial-gradient(closest-side at 58% 62%, rgba(255,90,200,.28), rgba(255,90,200,0) 68%);
-  mix-blend-mode:screen;
-  filter: blur(34px) saturate(1.12);
-  opacity:.88;
-  animation: glowFrontShift 9s ease-in-out infinite alternate, hueCycle 24s linear infinite;
-}
-
-/* sparkles */
-.sparkles{ position:absolute; inset:0; z-index:2; pointer-events:none; overflow:hidden;
-  transform-origin:50% 50%; animation: orbit 36s linear infinite; }
-.sparkles .s{
-  position:absolute; width:4px; height:4px; border-radius:50%;
-  background: radial-gradient(circle at 30% 30%, #fff, rgba(255,255,255,.85) 40%, rgba(255,255,255,0) 70%);
-  filter: drop-shadow(0 0 10px rgba(170,190,255,.9)) drop-shadow(0 0 18px rgba(120,160,255,.6));
-  opacity:.85;
-  transform: translate3d(calc(var(--x,50) * 1%), calc(var(--y,50) * 1%), 0) scale(.9);
-  animation: sparkleBlink 2.3s ease-in-out infinite alternate, sparkleFloat var(--d,11s) linear infinite;
-}
-
-@keyframes orbit{
-  from{transform:rotate(0)}
-  to{transform:rotate(360deg)}
-}
-
-.chain-logo{height:18px;width:auto;display:inline-block;vertical-align:-3px;object-fit:contain;filter:none}
-
-.row-logo{height:16px;width:auto;display:inline-block;vertical-align:-2px;object-fit:contain;filter:none}
-
-.mini-qimg{width:18px;height:18px;display:inline-block;border-radius:4px;vertical-align:middle;filter:brightness(0) invert(1)}
-
-.q-bubble-img{width:18px;height:18px;display:inline-block;border-radius:6px;vertical-align:middle;filter:brightness(0) invert(1)}
-
-
-
-/* TYPO SITE FONTS START */
-:root{
-  --font-h: "Sora", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-b: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-
-  /* Larger, responsive headings */
-  --h1: clamp(36px, 6vw, 56px);
-  --h2: clamp(22px, 3.8vw, 32px);
-  --h3: clamp(18px, 2.8vw, 24px);
-}
-h1,h2,h3{
-  font-family: var(--font-h);
-  letter-spacing: -0.015em;
-  line-height: 1.1;
-}
-h1{ font-size: var(--h1); font-weight: 700; }
-h2{ font-size: var(--h2); font-weight: 600; }
-h3{ font-size: var(--h3); font-weight: 600; }
-body, p, li, a, button, input, textarea, small, label{
-  font-family: var(--font-b);
-}
-/* TYPO SITE FONTS END */
-
-.brand-link{display:inline-flex;align-items:center;gap:8px;text-decoration:none;position:relative;z-index:100;margin-right:auto}
-
-.brand-wordmark{height:60px;width:auto;display:inline-block;vertical-align:middle;filter:brightness(0) invert(1)}
-
-.footer-wordmark{height:44px !important;width:auto !important;display:inline-block;vertical-align:middle;filter:brightness(0) invert(1)}
-
-@media (min-width: 1024px){.brand-wordmark{height:28px}.footer-wordmark{height:18px !important}}
-
-.footer-brand{display:inline-flex;align-items:center;margin-left:16px}
-
-@media (min-width:1024px){.brand-wordmark{height:72px}.footer-wordmark{height:48px !important}}
-</style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600..800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>quali.chat — Home</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
-  <!-- Codex: add runtime script for iPhone token window + path fixes -->
-  <script src="./main.js" defer></script>
 <body>
-  <div class="hero">
-    <header class="nav"><a href="./" class="brand brand-link"><img src="images/quali-wordmark.svg" alt="quali.chat" class="brand-wordmark"/></a>
-      
-      <nav class="links" id="menu">
-        <a href="#features">Features</a><a href="#how">How it works</a><a href="#usecases">Use cases</a>
-        <a href="#safety">Wallet safety</a><a href="#identity">Identity</a><a href="#faq">FAQ</a>
-        <a href="#oss">Open source</a><a href="#download" class="ghost">App</a>
-        <button class="cta small" onclick="scrollToId('download')">Connect wallet</button>
-      </nav>
-      <button class="hamburger" aria-label="Menu" onclick="toggleMenu()">☰</button>
-    </header>
+  <header class="site-header glass">
+    <a class="brand" href="./">quali.chat</a>
+    <nav class="site-nav">
+      <a class="active" href="./index.html">Home</a>
+      <a href="./about.html">About</a>
+      <a href="./demo.html">Demo</a>
+      <a href="./terms.html">Terms</a>
+      <a href="./privacy.html">Privacy</a>
+    </nav>
+  </header>
 
-    <main class="wrap">
-      <section class="left">
-  <h1>The app for<br/>token-gated chat</h1>
-  <p class="sub">Only verified token holders join your chats.</p>
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-text">
+        <h1><span class="accent">Quali.chat</span> for token-based access</h1>
+        <p class="lead">
+          Seamless, automatic access to the right chats—based on the tokens you hold. No manual approvals. No hassle.
+        </p>
+        <div class="cta">
+          <a class="btn primary" href="./demo.html">See the demo</a>
+          <a class="btn" href="./about.html">How it works</a>
+        </div>
+      </div>
 
-  <div class="stores" id="download">
-    <a class="badge appstore" href="#">App Store</a>
-    <a class="badge googleplay" href="#">Google Play</a>
-  </div>
-
-  <button class="cta">Connect wallet</button>
-
-  <div class="chains">
-    <div class="chain">
-      <img src="images/eth.svg" alt="Ethereum" class="chain-logo"/><span>Ethereum</span>
-    </div>
-    <div class="chain ae">
-      <img src="images/ae.svg" alt="æternity" class="chain-logo"/><span>æternity</span>
-    </div>
-    <div class="more">More blockchains coming soon</div>
-  </div>
-</section>
-
-      <section class="right">
-                <div class="swirl" aria-hidden="true"></div>
-        <div class="glow" aria-hidden="true"></div>
-<div class="phone" id="phone">
-          <div class="notch"></div>
-          <div class="screen">
-            <div class="screen-top">
-              <img src="images/quali-icon.svg" alt="q" class="mini-qimg"/><div class="app-name">quali.chat</div><div class="dots">•••</div>
+      <!-- iPhone mockup (single overlay) -->
+      <figure class="iphone tilt">
+        <div class="iphone-frame">
+          <div class="iphone-notch"></div>
+          <div class="iphone-screen">
+            <div class="chat-list">
+              <div class="chat chat--active">
+                <div class="avatar">Q</div>
+                <div class="meta">
+                  <div class="title">quali.chat</div>
+                  <div class="sub">All Chats</div>
+                </div>
+                <div class="time">now</div>
+              </div>
+              <div class="chat">
+                <div class="avatar">Ξ</div>
+                <div class="meta">
+                  <div class="title">Ethereum</div>
+                  <div class="sub">Mainnet updates</div>
+                </div>
+                <div class="time">3m</div>
+              </div>
+              <div class="chat">
+                <div class="avatar">R</div>
+                <div class="meta">
+                  <div class="title">Research</div>
+                  <div class="sub">Token gating notes</div>
+                </div>
+                <div class="time">9m</div>
+              </div>
             </div>
-            <div class="screen-title">All chats</div>
-            <div class="row"><div class="row-left"><img src="images/quali-icon.svg" alt="q" class="q-bubble-img"/><div class="row-title">quali.chat</div></div></div>
-            <div class="row"><div class="row-left"><img src="images/eth.svg" alt="Ethereum" class="row-logo"/><div class="row-title">Ethereum</div></div><button class="pill join">Join</button></div>
-            <div class="row"><div class="row-left"><img src="images/ae.svg"  alt="æternity" class="row-logo"/><div class="row-title">æternity</div></div><div class="joined">Joined</div></div>
-            <div class="row disabled"><div class="row-left"><img src="images/sol.svg" alt="Solana"   class="row-logo"/><div class="row-title">Solana</div></div><div class="meta">Coming soon</div></div>
-            <div class="row disabled"><div class="row-left"><img src="images/polygon.svg" alt="Polygon" class="row-logo"/><div class="row-title">Polygon</div></div><div class="meta">Coming soon</div></div>
-            <div class="footnote">More blockchains coming soon</div>
-            <img src="/images/automatic-access.png" alt="Automatic access badge" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); max-width:80%; width:280px; height:auto; filter:drop-shadow(0 6px 16px rgba(0,0,0,.3));" />
+
+            <!-- SINGLE toast (glassy), optional image shows if uploaded later -->
+            <div class="token-toast glass">
+              <img class="toast-img" src="images/autoaccess.png" alt="Auto access" onerror="this.style.display='none'">
+              <div class="toast-text">YOU WERE ADDED TO YOUR TOKEN CHATS</div>
+            </div>
           </div>
         </div>
-              <div class="glow-front" aria-hidden="true"></div>
-        <div class="sparkles" id="sparkles" aria-hidden="true"></div>
-</section>
-    </main>
-  </div>
+      </figure>
+    </section>
 
-  <section id="features" class="slice dark">
-    <div class="container">
-      <h2>What makes quali.chat different?</h2>
-      <ul class="grid features">
-        <li>Zero data-selling</li><li>Spam & troll resistant</li><li>Multi-chain</li>
-        <li>Ultra-secure encryption</li><li>Auto-join through your wallet</li>
-        <li>Total identity privacy</li><li>Security for your wallet</li>
-      </ul>
-    </div>
-  </section>
+    <section class="features">
+      <article class="feature glass">
+        <h3>Automatic</h3>
+        <p>Holding the token grants access—instantly. Lose the token and the access is revoked just as fast.</p>
+      </article>
+      <article class="feature glass">
+        <h3>Private</h3>
+        <p>No manual lists, no human gatekeepers. Proof is on-chain; access is off your mind.</p>
+      </article>
+      <article class="feature glass">
+        <h3>Fast setup</h3>
+        <p>Drop-in widget, zero heavy config. Works with your existing communities and tools.</p>
+      </article>
+    </section>
+  </main>
 
-  <section id="how" class="slice">
-    <div class="container">
-      <h2>How it works</h2>
-      <ol class="steps">
-        <li><div class="num">1</div><div><h3>Connect your wallet</h3><p>Use a read-only connection — sign a one-time nonce (not a transaction).</p></div></li>
-        <li><div class="num">2</div><div><h3>Set your rules</h3><p>Choose tokens/amounts that grant access to each chat.</p></div></li>
-        <li><div class="num">3</div><div><h3>Automatic access</h3><p>Verified token-holders join instantly; others don’t.</p></div></li>
-      </ol>
-    </div>
-  </section>
-
-  <section id="usecases" class="slice dark">
-    <div class="container">
-      <h2>Designed for real-world use</h2>
-      <ul class="grid cards">
-        <li>Conferences & events</li><li>Investor groups</li><li>Creators & memberships</li>
-        <li>DAOs & governance</li><li>Token launches</li><li>IRL communities</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="safety" class="slice">
-    <div class="container">
-      <h2>Wallet safety</h2>
-      <ul class="bullets">
-        <li>Read-only wallet connection</li>
-        <li>Sign a one-time nonce (not a transaction; costs nothing)</li>
-        <li>Sessions are device-bound and revocable</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="identity" class="slice dark">
-    <div class="container">
-      <h2>Identity</h2>
-      <p>If you own a Name Service domain (e.g., ENS / aENS), your display name can use it.</p>
-    </div>
-  </section>
-
-  <section id="faq" class="slice">
-    <div class="container">
-      <h2>FAQ</h2>
-      <div class="faq">
-        <details open><summary>Do you sell user data?</summary><p>No. quali.chat doesn’t sell data.</p></details>
-        <details><summary>Which chains are supported?</summary><p>Ethereum and æternity are available. Solana and Polygon are coming soon.</p></details>
-        <details><summary>Is the wallet connection safe?</summary><p>Yes. It’s read-only and uses a signed one-time nonce (not a transaction).</p></details>
-        <details><summary>Is there a web client?</summary><p>Yes — download the app or use the web app where available.</p></details>
-        <details><summary>Is it open source?</summary><p>Parts of the project are open-source (e.g., mobile and website repos).</p></details>
-      </div>
-    </div>
-  </section>
-
-  <section id="oss" class="slice dark">
-    <div class="container">
-      <h2>Open source</h2>
-      <div class="repo-buttons"><a class="badge" href="#">iOS repo</a><a class="badge" href="#">Website repo</a></div>
-    </div>
-  </section>
-
-  <footer class="footer"><a href="./" class="footer-brand"><img src="images/quali-wordmark.svg" alt="quali.chat" class="brand-wordmark footer-wordmark"/></a>
-    <div class="container foot">
-      <div class="brand small"><span></span></div>
-      <div class="legal"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Support</a></div>
-    </div>
+  <footer class="site-footer">
+    <nav>
+      <a href="./about.html">About</a>
+      <a href="./demo.html">Demo</a>
+      <a href="./terms.html">Terms</a>
+      <a href="./privacy.html">Privacy</a>
+    </nav>
+    <small>© <span id="year"></span> quali.chat</small>
   </footer>
 
-  <script>
-  function toggleMenu(){
-    const links = document.getElementById('menu');
-    const visible = window.getComputedStyle(links).display !== 'none';
-    links.style.display = visible ? 'none' : 'flex';
-  }
-  function scrollToId(id){
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({behavior:'smooth'});
-  }
-  const phone = document.getElementById('phone');
-  if (phone) {
-    const max = 6;
-    phone.addEventListener('mousemove', (e) => {
-      const r = phone.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width;
-      const y = (e.clientY - r.top) / r.height;
-      const rx = (0.5 - y) * max;
-      const ry = (x - 0.5) * max;
-      phone.style.transform =
-        `perspective(1600px) rotateY(${ -18 + ry }deg) rotateX(${ rx }deg) rotateZ(-6deg)`;
-    });
-    phone.addEventListener('mouseleave', () => {
-      phone.style.transform = 'perspective(1600px) rotateY(-18deg) rotateZ(-6deg)';
-    });
-  }
-  
-// --- sparkles: create drifting sparkles over the phone ---
-(function(){
-  const wrap = document.getElementById('sparkles');
-  if (!wrap || wrap.dataset.ready) return; wrap.dataset.ready='1';
-  const COUNT = 28;
-  for (let i=0;i<COUNT;i++){
-    const s=document.createElement('span'); s.className='s';
-    const x=15+Math.random()*70, y=10+Math.random()*75;
-    const tx=6+Math.random()*18, ty=-16-Math.random()*10;
-    const dur=(8+Math.random()*8).toFixed(1)+'s';
-    s.style.setProperty('--x',x.toFixed(1)); s.style.setProperty('--y',y.toFixed(1));
-    s.style.setProperty('--tx',tx.toFixed(1)); s.style.setProperty('--ty',ty.toFixed(1));
-    s.style.setProperty('--d',dur); s.style.animationDelay=(Math.random()*3).toFixed(2)+'s';
-    wrap.appendChild(s);
-  }
-})();
-  </script>
-  <script defer src="autoaccess.js"></script>
-  <script src="/assets/iphone-patch.js"></script>
-  <script src="/quali-site-live/global-patch.js"></script>
-  </body>
+  <script src="./app.js" defer></script>
+</body>
 </html>
