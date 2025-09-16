@@ -6,16 +6,15 @@
   <title>quali.chat — Home</title>
   <link rel="stylesheet" href="./styles.css" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/assets/css/nav.css">
 </head>
 <body>
   <header class="site-header glass">
     <a class="brand" href="./">quali.chat</a>
-    <nav class="site-nav">
-      <a class="active" href="./index.html">Home</a>
-      <a href="./about.html">About</a>
-      <a href="./demo.html">Demo</a>
-      <a href="./terms.html">Terms</a>
-      <a href="./privacy.html">Privacy</a>
+    <nav class="site-nav nav-list">
+      <a href="#about">About</a>
+      <a href="#demo">Demo</a>
+      <a class="nav-connect" href="/login">Connect</a>
     </nav>
   </header>
 
@@ -32,46 +31,49 @@
         </div>
       </div>
 
-      <!-- iPhone mockup (single overlay) -->
-      <figure class="iphone tilt">
-        <div class="iphone-frame">
-          <div class="iphone-notch"></div>
-          <div class="iphone-screen">
-            <div class="chat-list">
-              <div class="chat chat--active">
-                <div class="avatar">Q</div>
-                <div class="meta">
-                  <div class="title">quali.chat</div>
-                  <div class="sub">All Chats</div>
+      <!-- iPhone mockup with subtle orbit animation -->
+      <div class="phone-wrap">
+        <div class="phone-orbit"><span></span><span></span><span></span></div>
+        <figure class="iphone tilt">
+          <div class="iphone-frame">
+            <div class="iphone-notch"></div>
+            <div class="iphone-screen">
+              <div class="chat-list">
+                <div class="chat chat--active">
+                  <div class="avatar">Q</div>
+                  <div class="meta">
+                    <div class="title">quali.chat</div>
+                    <div class="sub">All Chats</div>
+                  </div>
+                  <div class="time">now</div>
                 </div>
-                <div class="time">now</div>
-              </div>
-              <div class="chat">
-                <div class="avatar">Ξ</div>
-                <div class="meta">
-                  <div class="title">Ethereum</div>
-                  <div class="sub">Mainnet updates</div>
+                <div class="chat">
+                  <div class="avatar">Ξ</div>
+                  <div class="meta">
+                    <div class="title">Ethereum</div>
+                    <div class="sub">Mainnet updates</div>
+                  </div>
+                  <div class="time">3m</div>
                 </div>
-                <div class="time">3m</div>
-              </div>
-              <div class="chat">
-                <div class="avatar">R</div>
-                <div class="meta">
-                  <div class="title">Research</div>
-                  <div class="sub">Token gating notes</div>
+                <div class="chat">
+                  <div class="avatar">R</div>
+                  <div class="meta">
+                    <div class="title">Research</div>
+                    <div class="sub">Token gating notes</div>
+                  </div>
+                  <div class="time">9m</div>
                 </div>
-                <div class="time">9m</div>
               </div>
-            </div>
 
-            <!-- SINGLE toast (glassy), optional image shows if uploaded later -->
-            <div class="token-toast glass">
-              <img class="toast-img" src="images/autoaccess.png" alt="Auto access" onerror="this.style.display='none'">
-              <div class="toast-text">YOU WERE ADDED TO YOUR TOKEN CHATS</div>
+              <!-- SINGLE toast (glassy), optional image shows if uploaded later -->
+              <div class="token-toast glass">
+                <img class="toast-img" src="images/autoaccess.png" alt="Auto access" onerror="this.style.display='none'">
+                <div class="toast-text">YOU WERE ADDED TO YOUR TOKEN CHATS</div>
+              </div>
             </div>
           </div>
-        </div>
-      </figure>
+        </figure>
+      </div>
     </section>
 
     <section class="features">
