@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>quali.chat — Home</title>
   <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="/assets/css/home-sections.css">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
@@ -19,74 +20,203 @@
     </nav>
   </header>
 
-  <main class="wrap">
-    <section class="hero">
-      <div class="hero-text">
-        <h1><span class="accent">Quali.chat</span> for token-based access</h1>
-        <p class="lead">
-          Seamless, automatic access to the right chats—based on the tokens you hold. No manual approvals. No hassle.
-        </p>
-        <div class="cta">
-          <a class="btn primary" href="./demo.html">See the demo</a>
-          <a class="btn" href="./about.html">How it works</a>
-        </div>
-      </div>
-
-      <!-- iPhone mockup (single overlay) -->
-      <figure class="iphone tilt">
-        <div class="iphone-frame">
-          <div class="iphone-notch"></div>
-          <div class="iphone-screen">
-            <div class="chat-list">
-              <div class="chat chat--active">
-                <div class="avatar">Q</div>
-                <div class="meta">
-                  <div class="title">quali.chat</div>
-                  <div class="sub">All Chats</div>
-                </div>
-                <div class="time">now</div>
-              </div>
-              <div class="chat">
-                <div class="avatar">Ξ</div>
-                <div class="meta">
-                  <div class="title">Ethereum</div>
-                  <div class="sub">Mainnet updates</div>
-                </div>
-                <div class="time">3m</div>
-              </div>
-              <div class="chat">
-                <div class="avatar">R</div>
-                <div class="meta">
-                  <div class="title">Research</div>
-                  <div class="sub">Token gating notes</div>
-                </div>
-                <div class="time">9m</div>
-              </div>
-            </div>
-
-            <!-- SINGLE toast (glassy), optional image shows if uploaded later -->
-            <div class="token-toast glass">
-              <img class="toast-img" src="images/autoaccess.png" alt="Auto access" onerror="this.style.display='none'">
-              <div class="toast-text">YOU WERE ADDED TO YOUR TOKEN CHATS</div>
-            </div>
+  <main>
+    <!-- HERO -->
+    <section class="section">
+      <div class="wrap grid-2">
+        <div>
+          <h1>The app for token-gated chat</h1>
+          <p class="lead">
+            We only let verified token holders join your chats. Enjoy bot-free, spam-resistant discussions in one easy-to-use app — with full wallet security.
+          </p>
+          <div class="buttons">
+            <a class="cta" href="https://apps.apple.com/us/app/quali-chat/id6575364693" target="_blank" rel="noopener">Download on the App Store</a>
+            <a class="cta" href="https://play.google.com/store" target="_blank" rel="noopener">Get it on Google Play</a>
+            <a class="cta" href="/login">Web login</a>
+          </div>
+          <div class="badges">
+            <span class="badge">Ethereum</span>
+            <span class="badge">Solana</span>
+            <span class="badge">BSC <small>(coming soon)</small></span>
+            <span class="badge">Polygon <small>(coming soon)</small></span>
+            <span class="badge">Base <small>(coming soon)</small></span>
+            <span class="badge">æternity</span>
           </div>
         </div>
-      </figure>
+        <div>
+          <!-- Optional: existing phone image; leave empty if not available -->
+          <img src="/assets/img/phone.png" alt="Quali.chat app preview" onerror="this.style.display='none'">
+        </div>
+      </div>
     </section>
 
-    <section class="features">
-      <article class="feature glass">
-        <h3>Automatic</h3>
-        <p>Holding the token grants access—instantly. Lose the token and the access is revoked just as fast.</p>
-      </article>
-      <article class="feature glass">
-        <h3>Private</h3>
-        <p>No manual lists, no human gatekeepers. Proof is on-chain; access is off your mind.</p>
-      </article>
-      <article class="feature glass">
-        <h3>Fast setup</h3>
-        <p>Drop-in widget, zero heavy config. Works with your existing communities and tools.</p>
-      </article>
+    <!-- WHAT MAKES QUALI.CHAT DIFFERENT -->
+    <section class="section">
+      <div class="wrap">
+        <h2>What makes quali.chat different</h2>
+        <div class="grid-3">
+          <div class="card">
+            <div class="h3">Spam &amp; troll resistant</div>
+            <p>Instant on-chain checks keep bots and bad actors out. Members get frictionless entry; everyone else is stopped at the door.</p>
+          </div>
+          <div class="card">
+            <div class="h3">Auto-join</div>
+            <p>Connect once and you’re in. We auto-join you to every space your wallet qualifies for across your communities.</p>
+          </div>
+          <div class="card">
+            <div class="h3">Multi-chain by default</div>
+            <p>Ethereum, Solana, BSC and more. Your community lives everywhere; your access should too.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOGIN / PRIVACY -->
+    <section class="section">
+      <div class="wrap grid-3">
+        <div class="card">
+          <div class="h3">One-tap wallet login</div>
+          <p>Skip passwords. Sign in with your wallet and your chats follow you. Roles map to what you hold.</p>
+        </div>
+        <div class="card">
+          <div class="h3">Total identity control</div>
+          <p>Use ENS or stay low-key. No ID selfies, no forms — just your wallet and the name you choose.</p>
+        </div>
+        <div class="card">
+          <div class="h3">Private by design</div>
+          <p>Encrypted, member-only rooms. We never sell or share your data.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section">
+      <div class="wrap">
+        <h2>How it works</h2>
+        <div class="grid-3">
+          <div class="card">
+            <div class="eyebrow">1</div>
+            <div class="h3">Connect</div>
+            <p>Link your wallet. We support major wallets on every chain we integrate.</p>
+          </div>
+          <div class="card">
+            <div class="eyebrow">2</div>
+            <div class="h3">Set rules <small>(coming soon)</small></div>
+            <p>Creator dashboard for advanced gates and roles launches soon. Early access available.</p>
+          </div>
+          <div class="card">
+            <div class="eyebrow">3</div>
+            <div class="h3">Auto-join</div>
+            <p>Members get instant access to every chat they qualify for. No manual approvals, no spreadsheets.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESIGNED FOR REAL-WORLD USE -->
+    <section class="section">
+      <div class="wrap">
+        <h2>Designed for real-world use</h2>
+        <div class="grid-3">
+          <div class="card">
+            <div class="h3">Conferences &amp; events</div>
+            <p>Gate VIP lounges, speaker backchannels, workshop cohorts, or post-event networking. Airdrop temporary passes for timed access.</p>
+          </div>
+          <div class="card">
+            <div class="h3">Investor groups</div>
+            <p>Create LP-only rooms, deal threads, or portfolio updates gated by fund tokens or signed attestations.</p>
+          </div>
+          <div class="card">
+            <div class="h3">Creators &amp; memberships</div>
+            <p>Reward holders with alpha channels, early drops, behind-the-scenes chats, and intimate AMAs.</p>
+          </div>
+          <div class="card">
+            <div class="h3">DAOs &amp; governance</div>
+            <p>Separate working groups and proposal rooms by token weight or role-based NFTs (ERC-20 and AEX-9; others coming soon).</p>
+          </div>
+          <div class="card">
+            <div class="h3">Token launches</div>
+            <p>Spin up allowlist support, phased communities, and holder-only announcements in minutes.</p>
+          </div>
+          <div class="card">
+            <div class="h3">IRL communities</div>
+            <p>Use NFC passes or QR airdrops to bridge venues with secure, member-only chats.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ENS DISPLAY NAME -->
+    <section class="section">
+      <div class="wrap grid-2">
+        <div>
+          <h2>Own an ENS? That’s your display name.</h2>
+          <p class="lead">Your ENS resolves automatically. Keep your brand consistent across chains and spaces.</p>
+          <div class="buttons">
+            <a class="cta" href="https://app.ens.domains" target="_blank" rel="noopener">Get ENS</a>
+          </div>
+        </div>
+        <div>
+          <img src="/assets/img/phone-ens.png" alt="ENS display name example" onerror="this.style.display='none'">
+        </div>
+      </div>
+    </section>
+
+    <!-- OPEN SOURCE -->
+    <section class="section">
+      <div class="wrap">
+        <h2>Open source, community-driven</h2>
+        <p class="lead">Quali.chat is open source. We welcome issues, ideas, and contributions.</p>
+        <div class="buttons">
+          <a class="cta" href="https://github.com/" target="_blank" rel="noopener">iOS repo</a>
+          <a class="cta" href="https://github.com/" target="_blank" rel="noopener">Website repo</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ (SHORT) -->
+    <section class="section">
+      <div class="wrap">
+        <h2>FAQ</h2>
+        <ul class="clean">
+          <li>
+            <strong>What is token-gating and why is it better?</strong><br>
+            Token-gating uses verifiable ownership to grant access, stopping bots and low-effort spam.
+          </li>
+          <li>
+            <strong>Which tokens and chains are supported?</strong><br>
+            We support major chains and token standards including NFTs and fungible tokens.
+          </li>
+          <li>
+            <strong>Do you store my data?</strong><br>
+            No. Rooms are private and encrypted. We never sell or share your data.
+          </li>
+          <li>
+            <strong>How fast can I launch?</strong><br>
+            Minutes. Connect your wallet, set your rules, and you’re live.
+          </li>
+          <li>
+            <strong>Is there a web client?</strong><br>
+            Yes — use the web login from desktop or mobile browsers.
+          </li>
+          <li>
+            <strong>What wallets are supported?</strong><br>
+            We aim to support major wallets on each chain. Tell us if a favorite is missing.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="section">
+      <div class="wrap">
+        <h2>Make your community bot-free</h2>
+        <p class="lead">Launch token-gated chats that feel good to join and effortless to maintain.</p>
+        <div class="buttons">
+          <a class="cta" href="/get-started">Get started</a>
+          <a class="cta" href="mailto:support@quali.chat">Contact support</a>
+        </div>
+      </div>
     </section>
   </main>
 
